@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    </include>
+
+    <!-- Spawn Conveyor Belt Model -->
+    <node name="spawn_conveyor_belt" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/conveyor_belt/model.sdf -sdf -model conveyor_belt -x 0 -y 0 -z 0" />
+
+    <!-- Start Conveyor Belt Controller -->
+    <node name="conveyor_belt_controller" pkg="simulation" type="conveyor_belt_controller.py" output="screen" />
+
+    <!-- Spawn Small Red Cylinder Model -->
+    <node name="spawn_small_red_cylinder" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_red_cylinder/model.sdf -sdf -model small_red_cylinder -x 0 -y 0 -z 10.0" />
+
+</launch>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="small_red_cylinder">
+    <static>false</static>
+    <link name="cylinder_link">
+      <pose>0 0 0.0.025 0 0 0</pose>
+      <visual name="cylinder_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.025</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.8 0.0 0.0 1</ambient>
+          <diffuse>1.0 0.0 0.0 1</diffuse>
+        </material>
+      </visual>
+      <collision name="cylinder_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.025</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <velocity_decay>
+        <linear>0.0</linear>
+        <angular>0.0</angular>
+      </velocity_decay>
+      <self_collide>false</self_collide>
+      <kinematic>false</kinematic>
+      <gravity>true</gravity>
+    </link>
+  </model>
+</sdf>
