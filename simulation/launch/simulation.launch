@@ -10,6 +10,9 @@
     <node name="conveyor_belt_controller" pkg="simulation" type="conveyor_belt_controller.py" output="screen" />
 
     <!-- Spawn Small Red Cylinder Model -->
-    <node name="spawn_small_red_cylinder" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_red_cylinder/model.sdf -sdf -model small_red_cylinder -x 0 -y 0 -z 10.0" />
+    <node name="spawn_small_red_cylinder" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_red_cylinder/model.sdf -sdf -model small_red_cylinder -x -0.8 -y 0.1 -z 1" />
+
+    <!-- Spawn Small Blue Cube Model -->
+    <node name="spawn_small_blue_cube" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_blue_cube/model.sdf -sdf -model small_blue_cube -x -0.8 -y -0.1 -z 1" />
 
 </launch>

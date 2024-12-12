@@ -8,9 +8,9 @@
       <inertial>
         <mass>0.02</mass>
         <inertia>
-          <ixx>2.08e-5</ixx>
-          <iyy>2.08e-5</iyy>
-          <izz>6.25e-6</izz>
+          <ixx>8.33e-6</ixx>
+          <iyy>8.33e-6</iyy>
+          <izz>8.33e-6</izz>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>
@@ -19,23 +19,24 @@
 
       <visual name="cylinder_visual">
         <geometry>
-          <cylinder>
-            <radius>0.025</radius>
-            <length>0.05</length>
-          </cylinder>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
         </geometry>
+        <material>
+          <ambient>0.0 0.0 0.8 1</ambient>
+          <diffuse>0.0 0.0 1.0 1</diffuse>
+        </material>
         <material>
           <ambient>0.8 0.0 0.0 1</ambient>
           <diffuse>1.0 0.0 0.0 1</diffuse>
         </material>
       </visual>
-
       <collision name="cylinder_collision">
         <geometry>
-          <cylinder>
-            <radius>0.025</radius>
-            <length>0.05</length>
-          </cylinder>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
         </geometry>
         <surface>
           <friction>
@@ -46,7 +47,6 @@
           </friction>
         </surface>
       </collision>
-
       <velocity_decay>
         <linear>0.0</linear>
         <angular>0.0</angular>

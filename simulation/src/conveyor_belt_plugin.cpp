@@ -96,7 +96,12 @@ namespace gazebo
               if (parentLink)
               {
                 // ROS_INFO_STREAM("Applying force to link: " << parentLink->GetName());
-                parentLink->AddForce(ignition::math::Vector3d(this->beltSpeed * 5, 0, 0));
+                auto objectVelocity = parentLink->WorldLinearVel();
+                auto relativeSpeed = this->beltSpeed - objectVelocity.X();
+                auto frictionCoefficient = 0.5; // Example friction coefficient
+                auto force = relativeSpeed * frictionCoefficient;
+                //ROS_INFO_STREAM("Applying force: " << force << " to link: " << parentLink->GetName());
+                parentLink->AddForce(ignition::math::Vector3d(force, 0, 0));
               }
               else
               {
@@ -135,7 +140,7 @@ namespace gazebo
     physics::ModelPtr model;
     sensors::ContactSensorPtr contactSensor;
     event::ConnectionPtr updateConnection;
-    double beltSpeed = 1.0;
+    double beltSpeed = 0.05;  // 5 centimeters per secondq
 
     std::unique_ptr<ros::NodeHandle> rosNode;
     ros::Subscriber rosSub;

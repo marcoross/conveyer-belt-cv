@@ -11,7 +11,7 @@ def conveyor_belt_controller():
 
     while not rospy.is_shutdown():
         twist = Twist()
-        twist.linear.x = 1.0 # Set the conveyor belt speed
+        twist.linear.x = 0.05 # Set the conveyor belt speed
         pub.publish(twist)
         # logging.info("Conveyor belt speed: %s", twist.linear.x)
         rate.sleep()
