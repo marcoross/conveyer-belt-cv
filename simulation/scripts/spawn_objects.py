@@ -27,13 +27,13 @@ def spawn_object():
         time.sleep(2)
         idx = 0
         while not rospy.is_shutdown():
-            model_name = f"small_blue_cube_{idx}"
             y_coord = random.uniform(-0.2, 0.2)
-            model_xml = random.choice([blue_cube_xml, red_cylinder_xml])
-            model_pose = Pose(Point(-0.9, y_coord, 1.05), Quaternion(0, 0, 0, 0))
+            model_type, model_xml = random.choice([("cube", blue_cube_xml), ("cylinder", red_cylinder_xml)])
+            model_name = f"{model_type}_{idx}"
+            model_pose = Pose(Point(-0.9, y_coord, 0.95), Quaternion(0, 0, 0, 0))
             spawn_model_prox(model_name, model_xml, "", model_pose, "world")
             idx += 1
-            rospy.loginfo(f"Spawned a new small_blue_cube at (-0.9, {y_coord:.2f}, 1.05)")
+            rospy.loginfo(f"Spawned a new {model_type} at (-0.9, {y_coord:.2f}, 0.95)")
             time.sleep(5)
     
     except rospy.ServiceException as e:
