@@ -8,9 +8,9 @@
       <inertial>
         <mass>0.02</mass>
         <inertia>
-          <ixx>2.08e-5</ixx>
-          <iyy>2.08e-5</iyy>
-          <izz>6.25e-6</izz>
+          <ixx>8.33e-6</ixx>
+          <iyy>8.33e-6</iyy>
+          <izz>8.33e-6</izz>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
           <iyz>0.0</iyz>

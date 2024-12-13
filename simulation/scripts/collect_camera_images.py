@@ -18,9 +18,9 @@ def image_callback(msg):
         # Save the image
         n_images_in_folder = len(list(images_path.glob('*.png')))
         image_name = f"camera_image_{n_images_in_folder}.png"
-        cv2.imwrite(image_name, cv_image)
-        rospy.loginfo("Image saved!")
-
+        rospy.loginfo("Image received!")
+        # cv2.imwrite(image_name, cv_image)
+        
 def main():
     rospy.init_node('camera_subscriber', anonymous=True)
     rospy.Subscriber("/camera_model/camera_sensor/image_raw", Image, image_callback)
