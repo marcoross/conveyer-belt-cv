@@ -3,7 +3,7 @@ import os
 
 # Path to the model and image
 model_path = os.path.join("..", "models", "yolov5s.pt")  # Path to the model (no change needed)
-image_path = os.path.join("..","data", "test_images", "image1.png")  # Corrected path to the image
+image_path = os.path.join("..","data", "test_images", "test_image.png")  # Corrected path to the image
 
 # Load the YOLOv5 model
 # model = YOLO(model_path)
