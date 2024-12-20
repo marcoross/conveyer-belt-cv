@@ -1,0 +1,9 @@
+class_id1 x_center1 y_center1 width1 height1
+class_id2 x_center2 y_center2 width2 height2
+class_id3 x_center3 y_center3 width3 height3
+...
+
+0 = cube
+1 = cylinder
+
+Annotations were created with CVAT
