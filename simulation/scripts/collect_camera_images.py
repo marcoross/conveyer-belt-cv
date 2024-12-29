@@ -8,6 +8,7 @@ from pathlib import Path
 
 def image_callback(msg):
     images_path = Path(__file__).parent.parent / 'images'
+    images_path.mkdir(exist_ok=True)
     bridge = CvBridge()
     try:
         # Convert the ROS Image message to OpenCV2
@@ -19,11 +20,11 @@ def image_callback(msg):
         n_images_in_folder = len(list(images_path.glob('*.png')))
         image_name = f"camera_image_{n_images_in_folder}.png"
         rospy.loginfo("Image received!")
-        # cv2.imwrite(image_name, cv_image)
+        # cv2.imwrite(str(images_path / image_name), cv_image)
         
 def main():
     rospy.init_node('camera_subscriber', anonymous=True)
-    rospy.Subscriber("/camera_model/camera_sensor/image_raw", Image, image_callback)
+    rospy.Subscriber("/camera1/image_raw", Image, image_callback)
     rospy.spin()
 
 if __name__ == '__main__':
