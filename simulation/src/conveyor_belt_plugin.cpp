@@ -71,6 +71,10 @@ namespace gazebo
     {
       // ROS_INFO_STREAM("Contact detected!");
       // Get the contacts
+      if (this->beltSpeed == 0)
+      {
+        return;
+      }
       auto contacts = this->contactSensor->Contacts();
       for (unsigned int i = 0; i < contacts.contact_size(); ++i)
       {
@@ -98,10 +102,14 @@ namespace gazebo
                 // ROS_INFO_STREAM("Applying force to link: " << parentLink->GetName());
                 auto objectVelocity = parentLink->WorldLinearVel();
                 auto relativeSpeed = this->beltSpeed - objectVelocity.X();
+                auto relativeSpeedY = -objectVelocity.Y();
+                auto relativeSpeedZ = -objectVelocity.Z();
                 auto frictionCoefficient = 0.5; // Example friction coefficient
                 auto force = relativeSpeed * frictionCoefficient;
+                auto forceY = relativeSpeedY * frictionCoefficient;
+                auto forceZ = relativeSpeedZ * frictionCoefficient;
                 //ROS_INFO_STREAM("Applying force: " << force << " to link: " << parentLink->GetName());
-                parentLink->AddForce(ignition::math::Vector3d(force, 0, 0));
+                parentLink->AddForce(ignition::math::Vector3d(force, forceY, forceZ));
               }
               else
               {
@@ -124,7 +132,7 @@ namespace gazebo
     void OnRosMsg(const geometry_msgs::Twist::ConstPtr &msg)
     {
       this->beltSpeed = msg->linear.x;
-      // ROS_INFO_STREAM("Received belt speed: " << this->beltSpeed);
+      ROS_INFO_STREAM("Received belt speed: " << this->beltSpeed);
     }
 
     void QueueThread()
