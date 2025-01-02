@@ -19,7 +19,7 @@
     <param name="robot_description" command="$(find xacro)/xacro '$(find simulation)/models/robot/ur5.xacro' prefix:=ur5_robot" />
 
     <!-- Spawn UR5 Robot in Gazebo -->
-    <node name="spawn_ur5" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5 -x 0.5 -y -0.5 -z 0.95   -R 0 -P 0 -Y 0" />
+    <node name="spawn_ur5" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5 -x 0 -y -0.5 -z 1" />
 
     <!-- Load the controllers for the ur5 robot -->
     <rosparam file="$(find ur_gazebo)/config/ur5_controllers.yaml" command="load" />
@@ -29,4 +29,6 @@
     <!-- Launch the collect_camera_images.py node -->
     <node name="collect_camera_images" pkg="simulation" type="collect_camera_images.py" output="screen" />
 
+    <!-- Move the UR5 robot to the straight-up position -->
+    <node name="move_ur5" pkg="simulation" type="move_ur5.py" output="screen" />
 </launch>
