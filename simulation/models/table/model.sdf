@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="table_model">
+    <!-- A table shouldn't move, so make the entire model static -->
+    <static>true</static>
+
+    <!-- Single link for the table -->
+    <link name="table_link">
+      <pose>0 1.0 0 0 0 0</pose> 
+      <!-- x=0, y=1.0 => place it behind or beside the belt, tweak as needed
+           z=0 => the bottom of the table sits on the ground -->
+
+      <collision name="table_collision">
+        <geometry>
+          <box>
+            <size>1 1 1.8 </size> 
+            <!-- 1x1 meter top, 0.85 m tall -->
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="table_visual">
+        <geometry>
+          <box>
+            <size>1 1 1.8 </size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.3 0.2 0.1 1</ambient> 
+          <diffuse>0.6 0.4 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

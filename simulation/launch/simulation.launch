@@ -19,6 +19,10 @@
     <node name="spawn_small_red_cylinder" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_red_cylinder/model.sdf -sdf -model small_red_cylinder -x -0.8 -y 0.1 -z 1.05" />
     <node name="spawn_small_blue_cube" pkg="gazebo_ros" type="spawn_model" args="-file $(find simulation)/models/small_blue_cube/model.sdf -sdf -model small_blue_cube -x -0.8 -y -0.1 -z 1.05" />
     -->
+    <!-- Spawn Table for Robot Arm -->
+    <node name="spawn_table" pkg="gazebo_ros" type="spawn_model"
+      args="-file $(find simulation)/models/table/model.sdf -sdf -model my_table"
+      respawn="false" output="screen"/>
 
     <node name="collect_camera_images" pkg="simulation" type="collect_camera_images.py" output="screen" />
 

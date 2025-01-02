@@ -53,7 +53,7 @@ namespace gazebo
             std::bind(&ConveyorBeltPlugin::OnContact, this));
       } else {
         ROS_ERROR_STREAM("Contact sensor not found");
-        /*
+        
         auto sensorManager = sensors::SensorManager::Instance();
         auto sensors = sensorManager->GetSensors();
         ROS_INFO_STREAM("Listing available sensors:");
@@ -61,7 +61,7 @@ namespace gazebo
         {
           ROS_INFO_STREAM("Sensor name: " << sensor->Name() << ", Type: " << sensor->Type());
         }
-        */
+        
       }
     }
 

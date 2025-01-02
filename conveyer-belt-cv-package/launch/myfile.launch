@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
 <launch>
-	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-	</include>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    </include>
+
+    <!-- Include UR5 robot -->
+    <!-- <node name="ur5_robot" pkg="gazebo_ros" type="spawn_model" args="-file $(find ur_description)/urdf/ur5_robot.urdf -urdf -model ur5_robot -x 1 -y 0 -z 0" /> -->
 </launch>
