@@ -57,5 +57,84 @@
       <child link="base_link"/>
     </joint>
 
+    <!-- Set initial joint positions -->
+    <joint name="${prefix}shoulder_pan_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}shoulder_link"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>0.0</default> <!-- Set initial position -->
+    </joint>
+
+    <joint name="${prefix}shoulder_lift_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}shoulder_link"/>
+      <child link="${prefix}upper_arm_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>-1.57</default> <!-- Set initial position -->
+    </joint>
+
+    <joint name="${prefix}elbow_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}upper_arm_link"/>
+      <child link="${prefix}forearm_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>1.57</default> <!-- Set initial position -->
+    </joint>
+
+    <joint name="${prefix}wrist_1_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}forearm_link"/>
+      <child link="${prefix}wrist_1_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>0.0</default> <!-- Set initial position -->
+    </joint>
+
+    <joint name="${prefix}wrist_2_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}wrist_1_link"/>
+      <child link="${prefix}wrist_2_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>0.0</default> <!-- Set initial position -->
+    </joint>
+
+    <joint name="${prefix}wrist_3_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}wrist_2_link"/>
+      <child link="${prefix}wrist_3_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+      <dynamics damping="0.1" friction="0.1"/>
+      <safety_controller k_velocity="1.0" k_position="20.0" soft_lower_limit="-3.14" soft_upper_limit="3.14"/>
+      <calibration rising="0.0"/>
+      <mimic joint=""/>
+      <default>0.0</default> <!-- Set initial position -->
+    </joint>
+
   </xacro:macro>
 </robot>
