@@ -15,17 +15,13 @@
     <!-- Launch the spawn_objects.py node -->
     <node name="spawn_objects" pkg="simulation" type="spawn_objects.py" output="screen" />
 
-    <!-- Load the UR5 robot description -->
-    <param name="robot_description" command="$(find xacro)/xacro '$(find simulation)/models/robot/ur5.xacro' prefix:=ur5_robot" />
+    <!-- Load the UR5 robot description with Robotiq 85 gripper -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ur5_description)/urdf/ur5_robotiq85_gripper.urdf.xacro'" />
 
-    <!-- Spawn UR5 Robot in Gazebo -->
-    <node name="spawn_ur5" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5 -x 0 -y -0.5 -z 1" />
+    <!-- Spawn UR5 Robot with Robotiq 85 Gripper in Gazebo -->
+    <node name="spawn_ur5_with_gripper" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_with_gripper -x 0 -y -0.5 -z 1" />
 
-    <!-- Load the controllers for the ur5 robot -->
-    <rosparam file="$(find ur_gazebo)/config/ur5_controllers.yaml" command="load" />
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-          args="joint_state_controller eff_joint_traj_controller" />
-
+   
     <!-- Launch the collect_camera_images.py node -->
     <node name="collect_camera_images" pkg="simulation" type="collect_camera_images.py" output="screen" />
 
