@@ -38,6 +38,8 @@ pip install pandas
 
 ### Elisa Edits 2
 
+*statt* Elisa Edits ausführen
+
 
 sudo apt-get update
 sudo apt-get install ros-noetic-rospy ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-rosgraph-msgs ros-noetic-moveit
