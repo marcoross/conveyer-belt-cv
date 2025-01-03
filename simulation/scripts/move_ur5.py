@@ -5,12 +5,17 @@ from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryG
 from trajectory_msgs.msg import JointTrajectoryPoint
 
 def move_ur5():
-    # Initialize the ROS node
-    rospy.init_node('move_ur5', anonymous=True)
+    # Check if the ROS node is already initialized
+    if not rospy.core.is_initialized():
+        print("will be initialized")
+        rospy.init_node('move_ur5', anonymous=True)
+        print("has been initialized ")
 
     # Create an action client
-    client = actionlib.SimpleActionClient('/eff_joint_traj_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
+    client = actionlib.SimpleActionClient('/trajectory_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
+    print("created client")
     client.wait_for_server()
+    print("server is ready")
 
     # Create a trajectory goal
     goal = FollowJointTrajectoryGoal()
@@ -25,7 +30,7 @@ def move_ur5():
 
     # Create a trajectory point
     point = JointTrajectoryPoint()
-    point.positions = [0.0, -1.57, 1.57, 0.0, 0.0, 0.0]  # Straight-up position
+    point.positions = [0.0, -1.57, 1.57, 0.0, 0.0, 0.0]  # Example positions
     point.time_from_start = rospy.Duration(5.0)  # 5 seconds to reach the position
 
     # Add the point to the goal
@@ -33,10 +38,12 @@ def move_ur5():
 
     # Send the goal to the action server
     client.send_goal(goal)
+    print("sent goal")
     client.wait_for_result()
 
 if __name__ == '__main__':
     try:
         move_ur5()
     except rospy.ROSInterruptException:
+        "exception"
         pass
