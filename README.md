@@ -51,5 +51,8 @@ https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation
 
 git clone https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation/
 
-catkin build
+catkin_make
 source devel/setup.bash
+
+
+roslaunch moveit_setup_assistant setup_assistant.launch

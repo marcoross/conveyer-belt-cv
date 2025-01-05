@@ -38,6 +38,6 @@
     <node name="collect_camera_images" pkg="simulation" type="collect_camera_images.py" output="screen" />
 
     <!-- Move the UR5 robot to the straight-up position -->
-    <!-- <node name="move_ur5" pkg="simulation" type="move_ur5.py" output="screen" /> -->
+    <node name="move_ur5" pkg="simulation" type="move_ur5.py" output="screen" />
 
 </launch>
