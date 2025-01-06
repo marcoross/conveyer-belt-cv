@@ -52,7 +52,7 @@ def move_ur5():
 
     # Create a goal for the gripper
     gripper_goal = GripperCommandGoal()
-    gripper_goal.command.position = 0.8  # Example position (open)
+    gripper_goal.command.position = 0.0  # Example position (open)
     gripper_goal.command.max_effort = 10.0  # Example effort
 
     # Send the gripper goal to the action server

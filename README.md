@@ -56,3 +56,7 @@ source devel/setup.bash
 
 
 roslaunch moveit_setup_assistant setup_assistant.launch
+
+
+
+Pick and place script from: https://github.com/moveit/moveit_tutorials/blob/master/doc/pick_place/src/pick_place_tutorial.cpp
