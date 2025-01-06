@@ -2,9 +2,9 @@ import os
 from ultralytics import YOLO
 
 # Define paths
-model_path = os.path.join('..', 'models', 'yolo11n-obb.pt')
+model_path = os.path.join('..', 'models', 'yolo11s-obb.pt')
 input_folder = os.path.join('..', 'data', 'images', 'test')  
-output_folder = os.path.join('..', 'tests', 'yolo11n_obb')
+output_folder = os.path.join('..', 'tests', 'yolo11s_obb')
 
 # Create the output folder if it doesn't exist
 os.makedirs(output_folder, exist_ok=True)
