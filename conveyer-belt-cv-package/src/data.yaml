@@ -1,0 +1,5 @@
+train: ../../conveyer-belt-cv/conveyer-belt-cv-package/data/images/train  # Path to training images
+val: ../../conveyer-belt-cv/conveyer-belt-cv-package/data/images/val  # Path to validation images
+
+nc: 2                        # Number of classes
+names: ['cube', 'cylinder']  # List of class names
