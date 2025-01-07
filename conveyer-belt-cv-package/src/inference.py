@@ -45,8 +45,8 @@ def transform_coordinates(x1, y1, x2, y2, x3, y3, x4, y4):
     normalized_theta = (theta + math.pi / 4) % (math.pi / 2) - math.pi / 4
 
     x_center = (x1 + x2 + x3 + x4) / 4
-    object_y = -1/0.993128 * (x_center - 0.5)
+    object_y = -1/1.083412 * (x_center - 0.5)
     y_center = (y1 + y2 + y3 + y4) / 4
-    object_x = -1/0.993128 * (y_center - 0.5)
+    object_x = -1/1.083412 * (y_center - 0.5)
 
     return object_x, object_y, normalized_theta
