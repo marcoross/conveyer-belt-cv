@@ -59,8 +59,7 @@ def create_labels():
             for _, row in group.iterrows():
                 class_id = class_mapping[row["object_type"]]
                 # Convert ROS coordinates [-0.5, 0,5] to YOLO format [0, 1]
-                # TODO correct conversion
-                x_center, y_center, width, height = row["object_x"] + 0.5, row["object_y"] + 0.5, 0.08, 0.08
+                x_center, y_center, width, height = 0.5 - row["object_y"], 0.5 - row["object_x"], 0.08, 0.08
                 label_file.write(f"{class_id} {x_center} {y_center} {width} {height}\n")
 
 
