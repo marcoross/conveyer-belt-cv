@@ -10,7 +10,8 @@ image_path = os.path.join("..","data", "images", "test", "camera_image_5.png")  
 # model = YOLO(model_path)
 
 # Load the fine-tuned model
-model = YOLO("../../runs/detect/custom_yolo_model/weights/best.pt")
+#model = YOLO("../../runs/detect/custom_yolo_model/weights/best.pt")
+model = YOLO("../../runs/detect/finetuned_yolo8obb_v2.pt")
 
 # Run inference on the image
 results = model(image_path)
