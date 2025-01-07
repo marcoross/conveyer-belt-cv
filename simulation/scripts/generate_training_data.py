@@ -11,6 +11,7 @@ from typing import NamedTuple
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
 from csv import DictWriter
+from tf.transformations import quaternion_from_euler
 
 
 class ObjectDescription(NamedTuple):
@@ -105,7 +106,8 @@ def generate_training_data():
                 if model_type == "cylinder":
                     angle = 0.0
                 model_name = f"{model_type}_{idx}"
-                model_pose = Pose(Point(x_coord, y_coord, 0.95), Quaternion(0.0, 0.0, angle, 1.0))
+                rotation = Quaternion(*quaternion_from_euler(0, 0, angle))
+                model_pose = Pose(Point(x_coord, y_coord, 0.95), rotation)
                 desc = ObjectDescription(model_name, model_type, x_coord, y_coord, angle)
                 if desc.too_close_to_any(current_models):
                     continue
