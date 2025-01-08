@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Komodo Dragon
     author_email: komodo@dragon.com
-    generated_timestamp: 1736179425
+    generated_timestamp: 1736279515
