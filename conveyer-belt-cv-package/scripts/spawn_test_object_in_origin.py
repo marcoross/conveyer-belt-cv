@@ -9,10 +9,10 @@ def spawn_single_object():
 
     # Get the path to the models
     rospack = rospkg.RosPack()
-    models_path = rospack.get_path('simulation') / 'models'
+    models_path = rospack.get_path('simulation') + '/models'
 
     # Load the model XML
-    with open(models_path / "small_red_cylinder" / "model.sdf", "r") as f:
+    with open(models_path + "/small_red_cylinder/model.sdf", "r") as f:
         red_cylinder_xml = f.read()
 
     # Define the position and orientation of the object
