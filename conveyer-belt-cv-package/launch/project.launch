@@ -32,7 +32,7 @@
 
     <include file="$(find ur5_gazebo)/launch/ur5_controllers.launch" />
     <include file="$(find ur5_moveit_config)/launch/demo.launch" />
-    <!--<node name="add_collision_objects_node" pkg="ur5_moveit_config" type="add_collision_objects.py" />-->
+    <node name="add_collision_objects_node" pkg="ur5_moveit_config" type="add_collision_objects.py" />
 
 
     <node name="pick_objects_node" pkg="ur5_moveit_config" type="pick_objects.py" output="screen" />
