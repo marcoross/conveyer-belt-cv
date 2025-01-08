@@ -27,9 +27,9 @@ print("")
 
 # Set the target pose for the gripper's base link
 pose_goal = geometry_msgs.msg.Pose()
-pose_goal.position.x = - 0.9  # Position of the object
+pose_goal.position.x = - 0.85  # Position of the object
 pose_goal.position.y = 0.0
-pose_goal.position.z = 0.1
+pose_goal.position.z = 0.15
 
 # Use quaternion_from_euler to set the orientation
 # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
