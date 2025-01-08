@@ -12,6 +12,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 from ultralytics import YOLO
 import torch
+from threading import Thread
 
 
 spawn_objects = True
@@ -105,7 +106,8 @@ def init_image_capture():
                 lowest_y_coord = np.min(y_coords)
                 rospy.loginfo(f"Detected {n_objects} objects, lowest y-coordinate: {lowest_y_coord}")
                 if lowest_y_coord < 0.5:
-                    pickup_objects(yolo)
+                    pickup_objects_thread = Thread(target=pickup_objects, args=(yolo,))
+                    pickup_objects_thread.start()
                 
         except CvBridgeError as e:
             rospy.logerr("CvBridge Error: {0}".format(e))
