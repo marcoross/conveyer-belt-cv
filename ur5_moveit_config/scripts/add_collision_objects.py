@@ -22,7 +22,7 @@ def add_collision_objects():
     conveyor_pose.header.frame_id = "world"
     conveyor_pose.pose.position.x =  0.0 - robot_position_x# Adjusted position
     conveyor_pose.pose.position.y = 0.0 - robot_position_y # Adjusted position
-    conveyor_pose.pose.position.z = 0.92 - robot_position_z  # Adjusted position
+    conveyor_pose.pose.position.z = 0.85 - robot_position_z  # Adjusted position
     conveyor_pose.pose.orientation.w = 1.0
 
     scene.add_box("conveyor_belt", conveyor_pose, size=(2.0, 0.5, 0.1))

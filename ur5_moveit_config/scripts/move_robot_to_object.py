@@ -5,7 +5,7 @@ import geometry_msgs.msg
 from tf.transformations import quaternion_from_euler
 import math
 from geometry_msgs.msg import Point
-from control_msgs.msg import GripperCommandGoal
+from control_msgs.msg import GripperCommandGoal, GripperCommandAction
 import actionlib
 import sys
 
@@ -18,7 +18,7 @@ class MoveRobotToObject:
         self.robot = moveit_commander.RobotCommander()
         self.scene = moveit_commander.PlanningSceneInterface()
         self.move_group = moveit_commander.MoveGroupCommander("manipulator")
-        self.gripper_client = actionlib.SimpleActionClient('/gripper_controller/gripper_action', control_msgs.msg.GripperCommandAction)
+        self.gripper_client = actionlib.SimpleActionClient('/gripper_controller/gripper_action', GripperCommandAction)
         self.gripper_client.wait_for_server()
 
         # Subscribe to the object coordinates topic
@@ -74,9 +74,9 @@ class MoveRobotToObject:
         self.gripper_client.wait_for_result()
         rospy.loginfo("Closed the gripper to pick up the object")
 
-
-try:
-    move_robot_to_object = MoveRobotToObject()
-    rospy.spin()
-except rospy.ROSInterruptException:
-    pass
+if __name__ == '__main__':
+    try:
+        move_robot_to_object = MoveRobotToObject()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
