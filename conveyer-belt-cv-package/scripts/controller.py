@@ -62,8 +62,11 @@ def pickup_objects(yolo):
             coord_pub.publish(coord_msg)
             rospy.loginfo("Sent message to robot to pick up object")
             # Wait for the robot to pick up the object
-            msg = rospy.wait_for_message("/objects_placed", String)
-            rospy.loginfo(f"Received message: {msg.data} - Object picked up")
+            done = False
+            while not done:
+                msg = rospy.wait_for_message("/objects_placed", String)
+                rospy.loginfo(f"Received message: {msg.data} - Object picked up")
+                done = msg.data == "done"
     
     # Start the conveyor belt
     time.sleep(2)    

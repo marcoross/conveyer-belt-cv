@@ -34,6 +34,8 @@
     <include file="$(find ur5_moveit_config)/launch/demo.launch" />
     <!--<node name="add_collision_objects_node" pkg="ur5_moveit_config" type="add_collision_objects.py" />-->
 
+
+    <node name="pick_objects_node" pkg="ur5_moveit_config" type="pick_objects.py" output="screen" />
     <node name="controller_node" pkg="conveyer-belt-cv-package" type="controller.py" output="screen" />
 
     
