@@ -71,10 +71,6 @@ namespace gazebo
     {
       // ROS_INFO_STREAM("Contact detected!");
       // Get the contacts
-      if (this->beltSpeed == 0)
-      {
-        return;
-      }
       auto contacts = this->contactSensor->Contacts();
       for (unsigned int i = 0; i < contacts.contact_size(); ++i)
       {
