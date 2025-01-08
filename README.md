@@ -60,3 +60,9 @@ roslaunch moveit_setup_assistant setup_assistant.launch
 
 
 Pick and place script from: https://github.com/moveit/moveit_tutorials/blob/master/doc/pick_place/src/pick_place_tutorial.cpp
+
+
+to use moveit with the simulation, call
+roslaunch simulation simulation.launch 
+(as usual) and then
+roslaunch ur5_moveit_config demo.launch
