@@ -13,7 +13,7 @@
 After building the ROS docker container, run the following commands to install required packages
 ```bash
 sudo apt-get update
-sudo apt-get install ros-noetic-rospy ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-rosgraph-msgs
+sudo apt-get install ros-noetic-rospy ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-rosgraph-msgs ros-noetic-moveit ros-noetic-tf-conversions
 pip install ultralytics
 ```
 
