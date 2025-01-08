@@ -13,6 +13,25 @@
     <!-- Spawn Camera Model -->
     <node name="spawn_camera" pkg="gazebo_ros" type="spawn_model" args="-file $(find conveyer-belt-cv-package)/models/camera/model.urdf -urdf -model camera -x 0 -y 0 -z 1.5" />
     <!-- Launch the spawn_objects.py node -->
+
+    <!-- Load the UR5 robot description with Robotiq 85 gripper -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ur5_description)/urdf/ur5_robotiq85_gripper.urdf.xacro'" />
+
+    <!-- Spawn UR5 Robot with Robotiq 85 Gripper in Gazebo -->
+    
+    <rosparam file="$(find ur5_description)/config/gazebo_ros_control_params.yaml" />
+
+    <node name="spawn_ur5_with_gripper" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_with_gripper -x 0.625 -y 0 -z 1 -P 0.0 -R 0.0 
+                -J shoulder_pan_joint -1.58 
+                -J shoulder_lift_joint -1.58
+                -J elbow_joint -1.58 
+                -J wrist_1_joint -1.58 
+                -J wrist_2_joint 1.58 
+                -J wrist_3_joint 1.58" />
+
+
+    <include file="$(find ur5_gazebo)/launch/ur5_controllers.launch" />
+
     <node name="controller_node" pkg="conveyer-belt-cv-package" type="controller.py" output="screen" />
 
     
