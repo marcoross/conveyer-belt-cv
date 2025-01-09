@@ -6,7 +6,7 @@
       <pose>0 0 0.025 0 0 0</pose>
 
       <inertial>
-        <mass>0.1</mass>
+        <mass>0.02</mass>
         <inertia>
           <ixx>8.33e-6</ixx>
           <iyy>8.33e-6</iyy>
@@ -41,8 +41,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>70</mu>
-              <mu2>70</mu2>
+              <mu>0.5</mu>
+              <mu2>0.3</mu2>
             </ode>
           </friction>
         </surface>

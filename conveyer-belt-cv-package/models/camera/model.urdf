@@ -11,16 +11,16 @@
 
   <link name="camera_link">
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
       <geometry>
-        <box size="0.2 0.2 0.2"/>
+        <box size="0.1 0.1 0.1"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
       <geometry>
-        <box size="0.2 0.2 0.2"/>
+        <box size="0.1 0.1 0.1"/>
       </geometry>
       <material name="red"/>
     </visual>
