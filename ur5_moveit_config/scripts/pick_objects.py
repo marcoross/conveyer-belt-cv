@@ -220,14 +220,16 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
 
 
 def pick_object(data: Point, args):
+        if data.z < 0:
+            return
         robot, scene, move_group = args
         rospy.loginfo("Received coordinates: x=%f, y=%f, z=%f", data.x, data.y, data.z)
         object_type = "cube" if data.z == 0 else "cylinder"
         drop_y = 0.5 if object_type == "cube" else -0.5
         
         pickup_coords = Point(data.x, data.y, 0.925)
-        drop_coords = Point(0.75, drop_y, 0.925)      
-        rospy.loginfo(f"Moving object from {pickup_coords} to {drop_coords}")          
+        drop_coords = Point(0.0, drop_y, 0.925)      
+        rospy.loginfo(f"Moving {object_type} from {pickup_coords} to {drop_coords}")          
         
         move_object(pickup_coords, drop_coords, object_type, robot, scene, move_group)
         
