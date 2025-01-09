@@ -8,8 +8,8 @@ import sys
 from tf.transformations import quaternion_from_euler
 import math
 from control_msgs.msg import GripperCommandGoal, GripperCommandAction, GripperCommandGoal
+from moveit_msgs.msg import JointConstraint
 import actionlib
-
 
 def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_group):
     
@@ -35,7 +35,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Wait for the result
     gripper_client.wait_for_result()
 
-    robot_position_x = 0.625  # Example position
+    robot_position_x = 0.65  # Example position
     robot_position_y = 0.0  # Example position
 
 
@@ -49,7 +49,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -84,7 +84,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -146,7 +146,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -179,7 +179,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -243,6 +243,8 @@ def pick_objects_loop():
     robot = moveit_commander.RobotCommander()
     scene = moveit_commander.PlanningSceneInterface()
     move_group = moveit_commander.MoveGroupCommander("manipulator")
+    
+    move_group.set_planner_id("RRTkConfigDefault")
 
     rospy.init_node('controller_node', anonymous=True)
     rospy.Subscriber('/object_coordinates', Point, pick_object, callback_args=(robot, scene, move_group))
