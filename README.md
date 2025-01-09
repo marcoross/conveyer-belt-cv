@@ -7,6 +7,8 @@
 - Bodowin Bittner
 - Marco Ross
 
+## Introduction
+The goal of the project was to simulate a conveyor belt system where an industrial robot must recognize, grasp, and sort objects of different types into designated bins based on their shape.
 
 ## Environment
 
@@ -30,61 +32,39 @@ To start the application, cd to `~/catkin_ws/src/fhtw` and run:
 roslaunch conveyer-belt-cv-package/launch/project.launch 
 ```
 
+## Software design
 
+The following sequence diagram illustrates the interactions between the major ROS nodes:
 
+```mermaid
+sequenceDiagram
 
-## Elisa edits
+Camera->>Controller: Image
+Controller->>Controller: Object detection
+opt If objects detected
+    Controller->>Conveyor Belt: Stop
+    Controller->>Controller: Take another image, object detection
+    loop For each detected object
+        Controller->>Object Picker: Object coordinates
+        Object Picker->>Object Picker: Operate UR5 robot
+        Object Picker->>Controller: Done
+    end
+    Controller->>Conveyor Belt: Start
+end
+```
+The following subsections briefly describe the main ROS nodes implemented for this project.
 
-sudo apt-get update
-sudo apt-get install ros-noetic-rospy ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-rosgraph-msgs ros-noetic-moveit
+### Controller
+The controller node is implemented in the `conveyer-belt-cv-package` package in `scripts/controller.py`. It contains the main loop to collect camera images, run the object detection using a custom YOLOv11 model, and control the conveyor belt and the object picker.
 
-sudo apt-get install ros-noetic-tf-conversions
+### Camera
+The camera is implemented in the `conveyer-belt-cv-package` package in `models/camera`. It is mounted above the conveyor belt looking directly down on the belt and takes one picture per second.
 
-cd ~/catkin_ws/src
-git clone https://github.com/ros-industrial/universal_robot.git
+### Conveyor Belt
+The conveyor belt model uses a custom gazebo plugin implemented in the `conveyer-belt-cv-package` package in `src/conveyor_belt_plugin.cpp`. To simulate a moving belt, the default friction physics of the box has been replaced with a custom collision handler that applies a force on objects laying on top of the conveyor belt, depending on the relative velocity between the object and the simulated belt.
 
-rosdep update
+### Object Picker
+The object picker is implemented in the `ur5_moveit_config` package in `scripts/pick_objects.py`. It receives messages from the controller with object X and Y coordinates and object classification encoded in the Z coordinate. Upon reception of a message, it controls the UR5 robot to place the object in the correct box, depending on its classification. The code is based on the UR5-Pick-and-Place-Simulation project from the Github repository https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation.
 
-
-mkdir -p ~/catkin_ws/src/fhtw/conveyer-belt-cv/simulation/include -> somehow need for catkin_make
-catkin_make
-
-source $HOME/catkin_ws/devel/setup.bash
-source devel/setup.bash
-
-
-export DISPLAY=host.docker.internal:0
-
-pip install pandas
-
-
-### Elisa Edits 2
-
-*statt* Elisa Edits ausführen
-
-
-sudo apt-get update
-sudo apt-get install ros-noetic-rospy ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-rosgraph-msgs ros-noetic-moveit
-
-sudo apt-get install ros-noetic-tf-conversions
-
-I now use the following Github Repo:
-https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation
-
-git clone https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation/
-
-catkin_make
-source devel/setup.bash
-
-
-roslaunch moveit_setup_assistant setup_assistant.launch
-
-
-
-Pick and place script from: https://github.com/moveit/moveit_tutorials/blob/master/doc/pick_place/src/pick_place_tutorial.cpp
-
-
-to use moveit with the simulation, call
-roslaunch simulation simulation.launch 
-(as usual) and then
-roslaunch ur5_moveit_config demo.launch
+### Computer Vision model
+The computer vision model is a custom `YOLOv11-obb` model embedded in the Controller node. Training data was generated using a slightly modified version of the simulation environment that can be started with the `generate_training_images.launch` launch file in the `conveyer-belt-cv-package` package. The training itself was done outside the ROS environment. The training script can be found in the `conveyer-belt-cv-package` in `src/train.py`.
