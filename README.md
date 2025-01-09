@@ -55,7 +55,7 @@ end
 The following subsections briefly describe the main ROS nodes implemented for this project.
 
 ### Controller
-The controller node is implemented in the `conveyer-belt-cv-package` package in `scripts/controller.py`. It contains the main loop to collect camera images, run the object detection using a custom YOLOv11 model, and control the conveyor belt and the object picker.
+The controller node is implemented in the `conveyer-belt-cv-package` package in `scripts/controller.py`. It contains the main loop to collect camera images, run the object detection using a custom YOLOv8 model, and control the conveyor belt and the object picker.
 
 ### Camera
 The camera is implemented in the `conveyer-belt-cv-package` package in `models/camera`. It is mounted above the conveyor belt looking directly down on the belt and takes one picture per second.
@@ -67,4 +67,4 @@ The conveyor belt model uses a custom gazebo plugin implemented in the `conveyer
 The object picker is implemented in the `ur5_moveit_config` package in `scripts/pick_objects.py`. It receives messages from the controller with object X and Y coordinates and object classification encoded in the Z coordinate. Upon reception of a message, it controls the UR5 robot to place the object in the correct box, depending on its classification. The code is based on the UR5-Pick-and-Place-Simulation project from the Github repository https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation.
 
 ### Computer Vision model
-The computer vision model is a custom `YOLOv11-obb` model embedded in the Controller node. Training data was generated using a slightly modified version of the simulation environment that can be started with the `generate_training_images.launch` launch file in the `conveyer-belt-cv-package` package. The training itself was done outside the ROS environment. The training script can be found in the `conveyer-belt-cv-package` in `src/train.py`.
+The computer vision model is a custom `YOLOv8-obb` model embedded in the Controller node. Training data was generated using a slightly modified version of the simulation environment that can be started with the `generate_training_images.launch` launch file in the `conveyer-belt-cv-package` package. The training itself was done outside the ROS environment. The training script can be found in the `conveyer-belt-cv-package` in `src/train_yolov8_obb.py`.
