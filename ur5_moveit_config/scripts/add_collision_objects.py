@@ -20,8 +20,8 @@ def add_collision_objects():
     # Define the conveyor belt
     conveyor_pose = PoseStamped()
     conveyor_pose.header.frame_id = "world"
-    conveyor_pose.pose.position.x =  0.0 - robot_position_x# Adjusted position
-    conveyor_pose.pose.position.y = 0.0 - robot_position_y # Adjusted position
+    conveyor_pose.pose.position.x =  - (0.0 - robot_position_x )# Adjusted position
+    conveyor_pose.pose.position.y = -(0.0 - robot_position_y) # Adjusted position
     conveyor_pose.pose.position.z = 0.85 - robot_position_z  # Adjusted position
     conveyor_pose.pose.orientation.w = 1.0
 
@@ -30,8 +30,8 @@ def add_collision_objects():
     # Define the camera
     camera_pose = PoseStamped()
     camera_pose.header.frame_id = "world"
-    camera_pose.pose.position.x =  0.0 - robot_position_x  # Adjusted position
-    camera_pose.pose.position.y = 0.0  - robot_position_y  # Adjusted position
+    camera_pose.pose.position.x =  -(0.0 - robot_position_x)  # Adjusted position
+    camera_pose.pose.position.y = - (0.0  - robot_position_y)  # Adjusted position
     camera_pose.pose.position.z =  1.55 - robot_position_z  # Adjusted position
     camera_pose.pose.orientation.w = 1.0
 

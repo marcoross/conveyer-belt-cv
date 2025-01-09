@@ -41,8 +41,8 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
 
     # Set the target pose for the gripper's base link
     pose_goal = Pose()
-    pose_goal.position.x = pickup_coords.x - robot_position_x # Position of the object
-    pose_goal.position.y = pickup_coords.y - robot_position_y
+    pose_goal.position.x = -(pickup_coords.x - robot_position_x) # Position of the object
+    pose_goal.position.y = -(pickup_coords.y - robot_position_y)
     pose_goal.position.z = 0.15
 
     # Use quaternion_from_euler to set the orientation
@@ -76,8 +76,8 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
 
     # Set the target pose for the gripper's base link
     pose_goal = Pose()
-    pose_goal.position.x = pickup_coords.x - robot_position_x # Position of the object
-    pose_goal.position.y = pickup_coords.y - robot_position_y
+    pose_goal.position.x = -(pickup_coords.x - robot_position_x) # Position of the object
+    pose_goal.position.y = -(pickup_coords.y - robot_position_y)
     pose_goal.position.z = 0.07
 
     # Use quaternion_from_euler to set the orientation
@@ -138,8 +138,8 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
 
     # Set the target pose for the gripper's base link
     pose_goal = Pose()
-    pose_goal.position.x = pickup_coords.x - robot_position_x # Position of the object
-    pose_goal.position.y = pickup_coords.y - robot_position_y
+    pose_goal.position.x = -(pickup_coords.x - robot_position_x )# Position of the object
+    pose_goal.position.y = -(pickup_coords.y - robot_position_y)
     pose_goal.position.z = 0.15
 
     # Use quaternion_from_euler to set the orientation
@@ -171,8 +171,8 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
 
     # Set the target pose for the gripper's base link
     pose_goal = Pose()
-    pose_goal.position.x = drop_coords.x - robot_position_x # Position of the object
-    pose_goal.position.y = drop_coords.y - robot_position_y
+    pose_goal.position.x = -(drop_coords.x - robot_position_x) # Position of the object
+    pose_goal.position.y = -(drop_coords.y - robot_position_y)
     pose_goal.position.z = 0.1
 
     # Use quaternion_from_euler to set the orientation
