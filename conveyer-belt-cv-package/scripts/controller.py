@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import numpy as np
 import rospy
@@ -55,15 +55,18 @@ def pickup_objects(yolo):
         world_x = world_center[1]
         world_y = world_center[0]
         rospy.loginfo(f"Object {i}: Type {obj_type}, Position ({bbox_coords}), Center {center}, World Position ({world_x}, {world_y})")
-        if abs(world_x) < 0.2 and abs(world_y) < 0.2:
+        if abs(world_x) < 0.23 and abs(world_y) < 0.23:
             rospy.loginfo(f"Object {i} is in the target area, picking it up")
             coord_pub = rospy.Publisher("/object_coordinates", Point, queue_size=10)
             coord_msg = Point(world_x, world_y, obj_type)  # Encode object type in z-coordinate
             coord_pub.publish(coord_msg)
             rospy.loginfo("Sent message to robot to pick up object")
             # Wait for the robot to pick up the object
-            msg = rospy.wait_for_message("/objects_placed", String)
-            rospy.loginfo(f"Received message: {msg.data} - Object picked up")
+            done = False
+            while not done:
+                msg = rospy.wait_for_message("/objects_placed", String)
+                rospy.loginfo(f"Received message: {msg.data} - Object picked up")
+                done = msg.data == "done"
     
     # Start the conveyor belt
     time.sleep(2)    
@@ -79,8 +82,8 @@ def pickup_objects(yolo):
 def init_image_capture():
     bridge = CvBridge()
     # Load YOLO model
-    model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo8obb_v2.pt"
-    # model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo11n-obb.pt"
+    # model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo8obb_v2.pt"
+    model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo11n-obb.pt"
     try:
         yolo = YOLO(model_file)
         rospy.loginfo("YOLO model loaded")
@@ -130,6 +133,9 @@ def controller():
     
     try:
         time.sleep(2)
+        coord_pub = rospy.Publisher("/object_coordinates", Point, queue_size=10)
+        coord_msg = Point(0, 0, -1)  # Send fake message to initialize the topic
+        coord_pub.publish(coord_msg)
         spawn_objects(spawn_model_prox, blue_cube_xml, red_cylinder_xml)
     
     except rospy.ServiceException as e:
