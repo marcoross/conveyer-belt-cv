@@ -35,7 +35,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Wait for the result
     gripper_client.wait_for_result()
 
-    robot_position_x = 0.5  # Example position
+    robot_position_x = 0.65  # Example position
     robot_position_y = 0.0  # Example position
 
 
@@ -243,24 +243,8 @@ def pick_objects_loop():
     robot = moveit_commander.RobotCommander()
     scene = moveit_commander.PlanningSceneInterface()
     move_group = moveit_commander.MoveGroupCommander("manipulator")
-
-    # Create a joint constraint for the first joint
-    joint_constraint = JointConstraint()
-    joint_constraint.joint_name = "shoulder_pan_joint"  # Replace with the actual name of your first joint
-    joint_constraint.position = 1.58  # Target position (middle of the range)
-    joint_constraint.tolerance_above = 1.58
-    joint_constraint.tolerance_below = 1.58
-    joint_constraint.weight = 1.0
     
-    # Set the planner to use
-    move_group.set_planner_id("RRTConnectkConfigDefault")
-    
-    # Create a constraints object and add the joint constraint
-    constraints = moveit_commander.Constraints()
-    constraints.joint_constraints.append(joint_constraint)
-
-    # Apply the constraints to the MoveIt group
-    # move_group.set_path_constraints(constraints)
+    move_group.set_planner_id("RRTkConfigDefault")
 
     rospy.init_node('controller_node', anonymous=True)
     rospy.Subscriber('/object_coordinates', Point, pick_object, callback_args=(robot, scene, move_group))

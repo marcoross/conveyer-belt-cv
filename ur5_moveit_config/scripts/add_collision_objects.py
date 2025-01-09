@@ -13,7 +13,7 @@ def add_collision_objects():
     rospy.sleep(2)  # Allow time for the planning scene to initialize
 
     # Robot's actual position in the world frame, because we need the other positions to be relative to the robot
-    robot_position_x = 0.5  # Example position
+    robot_position_x = 0.65  # Example position
     robot_position_y = 0.0  # Example position
     robot_position_z = 1  # Example position
 
