@@ -82,8 +82,7 @@ def pickup_objects(yolo):
 def init_image_capture():
     bridge = CvBridge()
     # Load YOLO model
-    # model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo8obb_v2.pt"
-    model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo11n-obb.pt"
+    model_file = Path(__file__).parents[1] / "models" / "finetuned_yolo8n-obb.pt"
     try:
         yolo = YOLO(model_file)
         rospy.loginfo("YOLO model loaded")
