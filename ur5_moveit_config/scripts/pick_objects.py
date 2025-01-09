@@ -49,7 +49,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -84,7 +84,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -146,7 +146,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
@@ -179,7 +179,7 @@ def move_object(pickup_coords, drop_coords, object_type, robot, scene, move_grou
     # Assuming you want the gripper to be parallel to the ground plane with no rotation around the Z-axis
     roll = 0.0
     pitch = 1/2 * math.pi
-    yaw = 0 #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
+    yaw = math.pi #math.radians(0)  # Change this value to rotate the gripper around the Z-axis
     q = quaternion_from_euler(roll, pitch, yaw)
     pose_goal.orientation.x = q[0]
     pose_goal.orientation.y = q[1]
