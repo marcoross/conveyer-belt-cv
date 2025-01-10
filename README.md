@@ -1,5 +1,7 @@
 # conveyer-belt-cv
 
+**Repository**: https://github.com/marcoross/conveyer-belt-cv
+
 **Group project for Robotics AI. Team Members:**
 - Christina Petschnig
 - Elisabeth Bankl
